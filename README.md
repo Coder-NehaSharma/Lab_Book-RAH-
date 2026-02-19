@@ -6,23 +6,6 @@ Welcome to the **RoboAI Manual**, a futuristic, interactive digital guidebook de
 
 ---
 
-## 🚀 Key Features
-
-### 🎮 Interactive Simulations
-Don't just read about it—try it!
-- **🦇 Ultrasonic Radar:** A functional radar simulation that detects objects and warns the user based on proximity logic.
-- **🦾 Virtual Servo Arm:** Control a robotic arm with a slider and see the corresponding Arduino code generate in real-time.
-- **⚡ Resistor Color Code Solver:** Select bands to dynamically calculate resistance and see the resistor change colors.
-- **💡 Logic Gate Playground:** Toggle inputs for AND, OR, NOT, XOR gates and watch the logic bulb light up.
-- **🧩 Drag & Drop Coding:** Learn C++ syntax by fixing "broken" code blocks for Loops, Conditionals, and Functions.
-
-### 🎨 Robotic Theme
-- **Dark Mode UI:** Sleek, high-contrast dark theme with neon accents (Cyan/Yellow).
-- **HUD Elements:** Futuristic fonts (*Orbitron*, *Share Tech Mono*) and data visualization components.
-- **Responsive Design:** Works seamlessly on desktops, tablets, and mobile devices.
-
----
-
 ## 📚 Curriculum Overview
 
 The manual covers a complete beginner-to-intermediate robotics journey:
