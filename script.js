@@ -320,55 +320,51 @@ function updateRadar(dist) {
     }
 }
 
-// Code Scramble Logic
-const correctOrder = [
-    "void setup() {",
-    "  pinMode(13, OUTPUT);",
-    "}",
-    "void loop() {",
-    "  digitalWrite(13, HIGH);",
-    "  delay(1000);",
-    "  digitalWrite(13, LOW);",
-    "  delay(1000);",
-    "}"
-];
+// ---------------------------------------------------------
+// GENERIC DRAG & DROP ACTIVITY LOGIC
+// ---------------------------------------------------------
 
-// Initialize Scramble on Load
 document.addEventListener('DOMContentLoaded', () => {
-    initScramble();
+    initAllScrambles();
 });
 
-function initScramble() {
-    const list = document.getElementById('scramble-list');
-    if (!list) return; // Guard clause if element doesn't exist
+function initAllScrambles() {
+    const lists = document.querySelectorAll('.scramble-list');
 
-    // Create a copy and shuffle
-    let shuffled = [...correctOrder].sort(() => Math.random() - 0.5);
+    lists.forEach(list => {
+        // 1. Shuffle children (visually only)
+        const items = Array.from(list.children);
+        const shuffled = items.sort(() => Math.random() - 0.5);
 
-    list.innerHTML = '';
-    shuffled.forEach(line => {
-        const li = document.createElement('li');
-        li.textContent = line;
-        li.className = 'draggable-item';
-        li.setAttribute('draggable', true);
+        list.innerHTML = '';
+        shuffled.forEach(item => {
+            list.appendChild(item);
+            setupDragEvents(item);
+        });
 
-        // Drag Events
-        li.addEventListener('dragstart', () => li.classList.add('dragging'));
-        li.addEventListener('dragend', () => li.classList.remove('dragging'));
+        // 2. Allow Dropping on List
+        list.addEventListener('dragover', e => {
+            e.preventDefault(); // Necessary to allow dropping
+            const afterElement = getDragAfterElement(list, e.clientY);
+            const draggable = document.querySelector('.dragging');
+            if (!draggable) return;
 
-        list.appendChild(li);
+            if (afterElement == null) {
+                list.appendChild(draggable);
+            } else {
+                list.insertBefore(draggable, afterElement);
+            }
+        });
+    });
+}
+
+function setupDragEvents(item) {
+    item.addEventListener('dragstart', () => {
+        item.classList.add('dragging');
     });
 
-    // List Drag Over Event
-    list.addEventListener('dragover', e => {
-        e.preventDefault();
-        const afterElement = getDragAfterElement(list, e.clientY);
-        const draggable = document.querySelector('.dragging');
-        if (afterElement == null) {
-            list.appendChild(draggable);
-        } else {
-            list.insertBefore(draggable, afterElement);
-        }
+    item.addEventListener('dragend', () => {
+        item.classList.remove('dragging');
     });
 }
 
@@ -386,27 +382,42 @@ function getDragAfterElement(container, y) {
     }, { offset: Number.NEGATIVE_INFINITY }).element;
 }
 
-function checkScramble() {
-    const listItems = document.querySelectorAll('#scramble-list li');
-    const feedback = document.getElementById('scramble-feedback');
+// Check Logic - Triggered by button
+function checkScramble(btn) {
+    // Navigate to the container (parent of the button)
+    const container = btn.parentElement;
+    const list = container.querySelector('.scramble-list');
+    const feedback = container.querySelector('.scramble-feedback');
+
+    if (!list || !feedback) {
+        console.error("Structure Error: checkScramble button must be inside .code-scramble-container");
+        return;
+    }
+
+    const items = list.querySelectorAll('.draggable-item');
     let isCorrect = true;
 
-    listItems.forEach((li, index) => {
-        if (li.textContent.trim() !== correctOrder[index].trim()) {
+    items.forEach((item, index) => {
+        const correctIndex = parseInt(item.getAttribute('data-index'));
+
+        // Check if item is in the position matching its data-index
+        if (correctIndex !== index) {
             isCorrect = false;
-            li.style.borderLeftColor = '#ff0055'; // Red hint
+            item.style.borderLeftColor = '#ff0055'; // Red hint
+            item.style.background = 'rgba(255, 0, 85, 0.1)';
         } else {
-            li.style.borderLeftColor = '#00d2ff'; // Green hint
+            item.style.borderLeftColor = '#00d2ff'; // Green hint
+            item.style.background = 'rgba(0, 210, 255, 0.1)';
         }
     });
 
     if (isCorrect) {
-        feedback.textContent = "✅ System Online! Code Compiled Successfully.";
+        feedback.textContent = "✅ System Online! Logic Compiled Successfully.";
         feedback.style.color = "#00d2ff";
+        feedback.classList.add("success-pulse");
     } else {
-        feedback.textContent = "❌ Syntax Error! Check line order.";
+        feedback.textContent = "❌ Logic Error! Sequence incorrect.";
         feedback.style.color = "#ff0055";
+        feedback.classList.remove("success-pulse");
     }
 }
-
-
