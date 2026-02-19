@@ -301,11 +301,42 @@
             <p><em>Note: Pin 13 has a built-in resistor, so this is safe for testing!</em></p>
 
             <h3>The Code (Sketch)</h3>
-            delay(1000); // Wait for 1 second
-            digitalWrite(13, LOW); // Turn LED OFF
-            delay(1000); // Wait for 1 second
-            }
+            <p><strong>Activity:</strong> Copy this code into your Arduino IDE to make the LED blink!</p>
+            <pre>
+void setup() {
+  pinMode(13, OUTPUT);  // Set Pin 13 as Output
+}
+
+void loop() {
+  digitalWrite(13, HIGH); // Turn LED ON
+  delay(1000);            // Wait 1 second
+  digitalWrite(13, LOW);  // Turn LED OFF
+  delay(1000);            // Wait 1 second
+}
             </pre>
+
+            <h3>Understanding the Board (Pins & Parts)</h3>
+            <div class="component-grid">
+                <div class="card">
+                    <h4>Digital Pins (0-13)</h4>
+                    <p>Used for On/Off signals (like LEDs, Buttons). Pins with <strong>~</strong> (PWM) can dim lights.
+                    </p>
+                </div>
+                <div class="card">
+                    <h4>Analog Pins (A0-A5)</h4>
+                    <p>Read varying voltage. Used for sensors like temperature, light, and distance.</p>
+                </div>
+                <div class="card">
+                    <h4>Power Pins</h4>
+                    <p><strong>5V:</strong> Provides 5 volts.<br><strong>GND:</strong> Ground
+                        (0V/Negative)<br><strong>VIN:</strong> External power input.</p>
+                </div>
+                <div class="card">
+                    <h4>USB & Reset</h4>
+                    <p><strong>USB:</strong> Connects to computer to upload code.<br><strong>Reset Button:</strong>
+                        Restarts the code from the beginning.</p>
+                </div>
+            </div>
             <p>Click <strong>Upload</strong> in the Arduino IDE to see it work!</p>
         </section>
 
