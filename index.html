@@ -304,14 +304,22 @@
             <p><strong>Interactive Activity: 🧩 Fix the Code!</strong></p>
             <p>The code below is broken! Drag and drop the lines to fix the "Blink" sketch.</p>
 
-            <div id="code-scramble-container"
+            <div class="code-scramble-container"
                 style="background: rgba(0,0,0,0.5); padding: 20px; border: 1px dashed var(--primary-color); border-radius: 8px;">
-                <ul id="scramble-list" style="list-style: none; padding: 0; min-height: 200px;">
-                    <!-- Items will be shuffled and inserted here by JS -->
+                <ul class="scramble-list" style="list-style: none; padding: 0; min-height: 200px;">
+                    <li data-index="0" draggable="true" class="draggable-item">void setup() {</li>
+                    <li data-index="1" draggable="true" class="draggable-item"> pinMode(13, OUTPUT);</li>
+                    <li data-index="2" draggable="true" class="draggable-item">}</li>
+                    <li data-index="3" draggable="true" class="draggable-item">void loop() {</li>
+                    <li data-index="4" draggable="true" class="draggable-item"> digitalWrite(13, HIGH);</li>
+                    <li data-index="5" draggable="true" class="draggable-item"> delay(1000);</li>
+                    <li data-index="6" draggable="true" class="draggable-item"> digitalWrite(13, LOW);</li>
+                    <li data-index="7" draggable="true" class="draggable-item"> delay(1000);</li>
+                    <li data-index="8" draggable="true" class="draggable-item">}</li>
                 </ul>
-                <div id="scramble-feedback"
+                <div class="scramble-feedback"
                     style="margin-top: 15px; font-weight: bold; text-align: center; height: 24px;"></div>
-                <button class="btn" onclick="checkScramble()" style="display: block; margin: 10px auto;">Check
+                <button class="btn" onclick="checkScramble(this)" style="display: block; margin: 10px auto;">Check
                     Code</button>
             </div>
 
