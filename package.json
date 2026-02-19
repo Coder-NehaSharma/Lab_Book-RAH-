@@ -13,12 +13,10 @@
     "appId": "com.roboaihub.manual",
     "productName": "RoboAI Manual",
     "win": {
-      "target": "nsis",
-      "icon": "logo.png"
+      "target": "nsis"
     },
     "mac": {
-      "target": "dmg",
-      "icon": "logo.png"
+      "target": "dmg"
     },
     "linux": {
       "target": "AppImage"
