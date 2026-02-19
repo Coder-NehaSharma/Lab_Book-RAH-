@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROBOAI HUB – Basic Robotics Student Manual</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code&family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Placeholder for FontAwesome -->
+</head>
+
+<body>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar">
+        <div class="logo-area">
+            <img src="logo.png" alt="RoboAI Logo" class="sidebar-logo">
+            <div class="logo-text">
+                <h1>ROBOAI <span>HUB</span></h1>
+                <p style="font-size: 0.6rem; color: #8090a0; margin-top: 0; letter-spacing: 2px;">MANUAL</p>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#intro" class="active">1. Intro to Robotics</a></li>
+                <li><a href="#electronics">2. Electronics Fundamentals</a></li>
+                <li><a href="#arduino">3. Arduino UNO</a></li>
+                <li><a href="#lcd">4. LCD Display</a></li>
+                <li><a href="#keypad">5. 4x4 Keypad</a></li>
+                <li><a href="#sensors">6. Sensors</a></li>
+                <li><a href="#motors">7. Motors & Robotics</a></li>
+                <li><a href="#power">8. Power System</a></li>
+                <li><a href="#projects">9. Integrated Projects</a></li>
+                <li><a href="#coding">10. Coding Basics</a></li>
+                <li><a href="#3dprinting">11. 3D Printing</a></li>
+                <li><a href="#troubleshooting">12. Troubleshooting</a></li>
+                <li><a href="#innovation">13. Innovation Challenge</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main id="main-content">
+        <header>
+            <h2>Basic Robotics Student Manual</h2>
+            <p>Welcome to your journey into the world of Engineering & Innovation.</p>
+        </header>
+
+        <!-- SECTION 1: INTRODUCTION -->
+        <section id="intro">
+            <h2>1. Introduction to Robotics</h2>
+            <p>Robotics is where <strong>Engineering, Electronics, and Coding</strong> come together to create machines
+                that can move, sense, and think! In this course, you will learn how to build your own robots from
+                scratch.</p>
+
+            <h3>What is a Robot?</h3>
+            <p>A robot is a machine that can perform tasks automatically. It usually consists of three main parts:</p>
+            <div class="component-grid">
+                <div class="card">
+                    <h4>1. Brain (Controller)</h4>
+                    <p>Thinking part. Examples: Arduino, Raspberry Pi, Micro:bit.</p>
+                </div>
+                <div class="card">
+                    <h4>2. Body (Mechanical)</h4>
+                    <p>Moving parts. Examples: Motors, Wheels, Chassis, Arms.</p>
+                </div>
+                <div class="card">
+                    <h4>3. Senses (Sensors)</h4>
+                    <p>Feeling part. Examples: IR Sensor (Eyes), Mic (Ears).</p>
+                </div>
+            </div>
+
+            <h3>Applications of Robotics</h3>
+            <ul>
+                <li>🏭 <strong>Industrial:</strong> Assembling cars, welding.</li>
+                <li>🏥 <strong>Medical:</strong> Surgical robots, prosthetics.</li>
+                <li>🚀 <strong>Space:</strong> Mars Rovers like Curiosity and Perseverance.</li>
+                <li>🏠 <strong>Domestic:</strong> Vacuum cleaners (Roomba).</li>
+            </ul>
+        </section>
+
+        <!-- SECTION 2: ELECTRONICS FUNDAMENTALS -->
+        <section id="electronics">
+            <h2>2. Electronics Fundamentals</h2>
+            <p>Before we build robots, we must understand the electronic components that power them.</p>
+
+            <h3>Interactive Learning: Ohm's Law</h3>
+            <div class="interactive-box"
+                style="background: #e3f2fd; padding: 20px; border-radius: 8px; border: 2px solid #2196f3; margin-bottom: 20px;">
+                <h4 style="margin-top:0;">⚡ Resistance Calculator</h4>
+                <p>Enter Voltage (V) and Current (mA) to find the Resistance needed.</p>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <input type="number" id="calc-voltage" placeholder="Voltage (V)"
+                        style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                    <input type="number" id="calc-current" placeholder="Current (mA)"
+                        style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                    <button onclick="calculateResistance()" class="btn" style="margin-top: 0;">Calculate</button>
+                </div>
+                <p id="calc-result" style="font-weight: bold; margin-top: 10px; color: #d32f2f;"></p>
+            </div>
+
+            <h3>Interactive Learning: Resistor Color Code Solver</h3>
+            <div class="interactive-box"
+                style="padding: 20px; border: 1px solid var(--primary-color); border-radius: 8px; margin-bottom: 20px;">
+                <h4 style="margin-top:0; color: var(--primary-color);">🎨 Color Code Decoder</h4>
+                <p>Select the colors to find the resistance value.</p>
+
+                <!-- Visual Resistor -->
+                <div class="resistor-visual-container"
+                    style="position: relative; height: 100px; margin: 20px 0; display: flex; align-items: center; justify-content: center;">
+                    <div class="resistor-wire"
+                        style="position: absolute; width: 300px; height: 4px; background: #8090a0; z-index: 1;"></div>
+                    <div class="resistor-body"
+                        style="position: relative; width: 200px; height: 60px; background: #e0c38c; border-radius: 30px; z-index: 2; border: 2px solid #555; display: flex; align-items: center; justify-content: space-evenly; overflow: hidden;">
+                        <div id="band1" class="r-band" style="width: 15px; height: 100%; background: #964b00;"></div>
+                        <!-- Brown -->
+                        <div id="band2" class="r-band" style="width: 15px; height: 100%; background: #000;"></div>
+                        <!-- Black -->
+                        <div id="band3" class="r-band" style="width: 15px; height: 100%; background: #ff0000;"></div>
+                        <!-- Red -->
+                        <div id="band4" class="r-band"
+                            style="width: 15px; height: 100%; background: #ffd700; margin-left: 20px;"></div>
+                        <!-- Gold -->
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="resistor-controls"
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px;">
+                    <select id="select-band1" onchange="updateResistor()">
+                        <option value="0" style="background:black; color:white;">Black (0)</option>
+                        <option value="1" selected style="background:#964b00; color:white;">Brown (1)</option>
+                        <option value="2" style="background:red; color:white;">Red (2)</option>
+                        <option value="3" style="background:orange; color:black;">Orange (3)</option>
+                        <option value="4" style="background:yellow; color:black;">Yellow (4)</option>
+                        <option value="5" style="background:green; color:white;">Green (5)</option>
+                        <option value="6" style="background:blue; color:white;">Blue (6)</option>
+                        <option value="7" style="background:violet; color:white;">Violet (7)</option>
+                        <option value="8" style="background:gray; color:black;">Gray (8)</option>
+                        <option value="9" style="background:white; color:black;">White (9)</option>
+                    </select>
+
+                    <select id="select-band2" onchange="updateResistor()">
+                        <option value="0" selected style="background:black; color:white;">Black (0)</option>
+                        <option value="1" style="background:#964b00; color:white;">Brown (1)</option>
+                        <option value="2" style="background:red; color:white;">Red (2)</option>
+                        <option value="3" style="background:orange; color:black;">Orange (3)</option>
+                        <option value="4" style="background:yellow; color:black;">Yellow (4)</option>
+                        <option value="5" style="background:green; color:white;">Green (5)</option>
+                        <option value="6" style="background:blue; color:white;">Blue (6)</option>
+                        <option value="7" style="background:violet; color:white;">Violet (7)</option>
+                        <option value="8" style="background:gray; color:black;">Gray (8)</option>
+                        <option value="9" style="background:white; color:black;">White (9)</option>
+                    </select>
+
+                    <select id="select-multiplier" onchange="updateResistor()">
+                        <option value="1" style="background:black; color:white;">x1 (Black)</option>
+                        <option value="10" style="background:#964b00; color:white;">x10 (Brown)</option>
+                        <option value="100" selected style="background:red; color:white;">x100 (Red)</option>
+                        <option value="1000" style="background:orange; color:black;">x1k (Orange)</option>
+                        <option value="10000" style="background:yellow; color:black;">x10k (Yellow)</option>
+                        <option value="100000" style="background:green; color:white;">x100k (Green)</option>
+                        <option value="1000000" style="background:blue; color:white;">x1M (Blue)</option>
+                    </select>
+
+                    <select id="select-tolerance" onchange="updateResistor()">
+                        <option value="1" style="background:#964b00; color:white;">±1% (Brown)</option>
+                        <option value="2" style="background:red; color:white;">±2% (Red)</option>
+                        <option value="5" selected style="background:#ffd700; color:black;">±5% (Gold)</option>
+                        <option value="10" style="background:silver; color:black;">±10% (Silver)</option>
+                    </select>
+                </div>
+
+                <div id="resistor-output"
+                    style="text-align: center; margin-top: 20px; font-family: var(--font-head); font-size: 1.5rem; color: var(--primary-color); text-shadow: 0 0 10px var(--primary-color);">
+                    1000 Ω ±5%
+                </div>
+            </div>
+
+            <h3>Interactive Learning: Logic Gate Playground</h3>
+            <div class="interactive-box"
+                style="padding: 20px; border: 1px solid var(--primary-color); border-radius: 8px; margin-bottom: 20px;">
+                <h4 style="margin-top:0; color: var(--primary-color);">🧠 Digital Brain Logic</h4>
+                <p>Robots "think" in 1s (ON) and 0s (OFF). Select a logic gate and toggle inputs to see how they think.
+                </p>
+
+                <div class="logic-container"
+                    style="display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; text-align: center; gap: 20px; margin-top: 20px;">
+
+                    <!-- Inputs -->
+                    <div class="logic-inputs" style="display: flex; flex-direction: column; gap: 30px;">
+                        <div class="input-group">
+                            <label
+                                style="display: block; color: var(--secondary-color); font-weight: bold; margin-bottom: 5px;">INPUT
+                                A</label>
+                            <div class="toggle-btn" id="btn-a" onclick="toggleInput('btn-a')"
+                                style="cursor: pointer; width: 60px; height: 30px; background: #333; border: 2px solid #555; border-radius: 15px; position: relative; transition: all 0.3s;">
+                                <div class="toggle-circle"
+                                    style="width: 26px; height: 26px; background: #888; border-radius: 50%; position: absolute; top: 0; left: 0; transition: all 0.3s;">
+                                </div>
+                            </div>
+                            <span id="val-a"
+                                style="font-family: 'Fira Code'; color: var(--text-muted); display: block; margin-top: 5px;">0</span>
+                        </div>
+
+                        <div class="input-group">
+                            <label
+                                style="display: block; color: var(--secondary-color); font-weight: bold; margin-bottom: 5px;">INPUT
+                                B</label>
+                            <div class="toggle-btn" id="btn-b" onclick="toggleInput('btn-b')"
+                                style="cursor: pointer; width: 60px; height: 30px; background: #333; border: 2px solid #555; border-radius: 15px; position: relative; transition: all 0.3s;">
+                                <div class="toggle-circle"
+                                    style="width: 26px; height: 26px; background: #888; border-radius: 50%; position: absolute; top: 0; left: 0; transition: all 0.3s;">
+                                </div>
+                            </div>
+                            <span id="val-b"
+                                style="font-family: 'Fira Code'; color: var(--text-muted); display: block; margin-top: 5px;">0</span>
+                        </div>
+                    </div>
+
+                    <!-- Processing (Gate) -->
+                    <div class="logic-gate">
+                        <select id="gate-selector" onchange="updateLogic()"
+                            style="font-size: 1.2rem; padding: 10px; width: 120px; text-align: center;">
+                            <option value="AND">AND</option>
+                            <option value="OR">OR</option>
+                            <option value="NOT">NOT</option>
+                            <option value="XOR">XOR</option>
+                        </select>
+                        <div style="font-size: 2rem; color: var(--primary-color); margin: 10px 0;">➡</div>
+                    </div>
+
+                    <!-- Output -->
+                    <div class="logic-output">
+                        <label
+                            style="display: block; color: var(--secondary-color); font-weight: bold; margin-bottom: 10px;">OUTPUT</label>
+                        <div id="logic-bulb"
+                            style="width: 60px; height: 60px; background: #333; border-radius: 50%; margin: 0 auto; border: 4px solid #444; box-shadow: 0 0 10px #000 inset; transition: all 0.3s;">
+                        </div>
+                        <span id="val-out"
+                            style="font-family: 'Fira Code'; color: var(--text-muted); display: block; margin-top: 10px;">0</span>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <h3>Basic Components</h3>
+            <div class="component-grid">
+                <div class="card">
+                    <h4>Resistor (Ω)</h4>
+                    <p>Resists the flow of current. Used to protect LEDs.</p>
+                    <p><strong>Symbol:</strong> 〰️</p>
+                </div>
+                <div class="card">
+                    <h4>Capacitor (µF)</h4>
+                    <p>Stores electrical energy temporarily. Smooths voltage.</p>
+                    <p><strong>Symbol:</strong> ┤├</p>
+                </div>
+                <div class="card">
+                    <h4>Transistor (BC547)</h4>
+                    <p>Electronic switch or amplifier.</p>
+                    <p><strong>Config:</strong> E-B-C (Emitter, Base, Collector)</p>
+                </div>
+                <div class="card">
+                    <h4>Voltage Regulator (7805)</h4>
+                    <p>Converts higher voltage (e.g., 9V) to stable 5V.</p>
+                    <p><strong>Crucial for Arduino projects!</strong></p>
+                </div>
+            </div>
+
+            <h3>The 555 Timer IC</h3>
+            <p>The "Time Machine" of electronics. Used for creating pulses and delays.</p>
+            <p class="diagram-caption">Pin 1: GND, Pin 8: VCC, Pin 3: Output</p>
+
+            <h3>Mini Project: LED Flasher</h3>
+            <p><strong>Goal:</strong> Make an LED blink using a 555 Timer (No coding required!).</p>
+            <ul>
+                <li>Connect Pin 4 & 8 to +ve.</li>
+                <li>Connect Pin 1 to -ve.</li>
+                <li>Use a capacitor and resistors to control timing.</li>
+            </ul>
+        </section>
+
+        <!-- SECTION 3: ARDUINO UNO -->
+        <section id="arduino">
+            <h2>3. Arduino UNO</h2>
+            <p>The <strong>Arduino UNO</strong> is the brain of your robot. It reads inputs (sensors) and controls
+                outputs (motors/LEDs) based on your code.</p>
+
+            <h3>Board Layout</h3>
+
+
+            <h3>Wiring Your First Circuit (Blink LED)</h3>
+            <p>1. Insert the LED long leg (+ve) into <strong>Pin 13</strong>.</p>
+            <p>2. Insert the LED short leg (-ve) into <strong>GND</strong>.</p>
+            <p><em>Note: Pin 13 has a built-in resistor, so this is safe for testing!</em></p>
+
+            <h3>The Code (Sketch)</h3>
+            <p><strong>Interactive Activity: 🧩 Fix the Code!</strong></p>
+            <p>The code below is broken! Drag and drop the lines to fix the "Blink" sketch.</p>
+
+            <div id="code-scramble-container"
+                style="background: rgba(0,0,0,0.5); padding: 20px; border: 1px dashed var(--primary-color); border-radius: 8px;">
+                <ul id="scramble-list" style="list-style: none; padding: 0; min-height: 200px;">
+                    <!-- Items will be shuffled and inserted here by JS -->
+                </ul>
+                <div id="scramble-feedback"
+                    style="margin-top: 15px; font-weight: bold; text-align: center; height: 24px;"></div>
+                <button class="btn" onclick="checkScramble()" style="display: block; margin: 10px auto;">Check
+                    Code</button>
+            </div>
+
+            <p><em>Reference Code:</em></p>
+            <pre>
+void setup() {
+  pinMode(13, OUTPUT); // Set Pin 13 as an Output
+}
+
+void loop() {
+  digitalWrite(13, HIGH); // Turn LED ON
+  delay(1000);            // Wait for 1 second
+  digitalWrite(13, LOW);  // Turn LED OFF
+  delay(1000);            // Wait for 1 second
+}
+            </pre>
+            <p>Click <strong>Upload</strong> in the Arduino IDE to see it work!</p>
+        </section>
+
+        <!-- SECTION 4: LCD 16x2 WITH I2C -->
+        <section id="lcd">
+            <h2>4. LCD 16x2 Display with I2C</h2>
+            <p>Instead of just blinking LEDs, let's make the robot talk to us using a screen! We use an <strong>I2C
+                    module</strong> to make wiring super simple (only 4 wires instead of 16!).</p>
+
+            <h3>Writing Diagram</h3>
+            <table>
+                <tr>
+                    <th>I2C Module Pin</th>
+                    <th>Arduino Pin</th>
+                </tr>
+                <tr>
+                    <td>GND</td>
+                    <td>GND</td>
+                </tr>
+                <tr>
+                    <td>VCC</td>
+                    <td>5V</td>
+                </tr>
+                <tr>
+                    <td>SDA</td>
+                    <td>A4</td>
+                </tr>
+                <tr>
+                    <td>SCL</td>
+                    <td>A5</td>
+                </tr>
+            </table>
+
+            <h3>Code Example: "Hello Robot!"</h3>
+            <p>You need to install the <code>LiquidCrystal_I2C</code> library first.</p>
+            <pre>
+#include &lt;Wire.h&gt;
+#include &lt;LiquidCrystal_I2C.h&gt;
+
+// Set address to 0x27 or 0x3F
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+void setup() {
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(0, 0); // Column 0, Row 0
+  lcd.print("ROBOAI HUB");
+  lcd.setCursor(0, 1); // Column 0, Row 1
+  lcd.print("System Ready...");
+}
+
+void loop() {
+  // Nothing here for static text
+}
+            </pre>
+        </section>
+
+        <!-- SECTION 5: 4x4 KEYPAD -->
+        <section id="keypad">
+            <h2>5. 4x4 Keypad Interfacing</h2>
+            <p>Keypads allow us to give secure inputs, like passwords or controlling robot direction manually.</p>
+
+            <h3>How it works (Matrix Scanning)</h3>
+            <p>The keypad has 4 Rows and 4 Columns. When you press a button, it connects a specific row to a specific
+                column, and the Arduino detects which pair is connected.</p>
+
+            <h3>Code Snippet: Password System</h3>
+            <pre>
+#include &lt;Keypad.h&gt;
+
+const byte ROWS = 4;
+const byte COLS = 4;
+char keys[ROWS][COLS] = {
+  {'1','2','3','A'},
+  {'4','5','6','B'},
+  {'7','8','9','C'},
+  {'*','0','#','D'}
+};
+byte rowPins[ROWS] = {9, 8, 7, 6};
+byte colPins[COLS] = {5, 4, 3, 2};
+
+Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
+
+void loop() {
+  char key = keypad.getKey();
+  if (key){
+    Serial.println(key); // Check Serial Monitor
+  }
+}
+            </pre>
+        </section>
+
+        <!-- SECTION 6: SENSORS -->
+        <section id="sensors">
+            <h2>6. Sensors: The Robot's Senses</h2>
+            <p>Just like humans have eyes and ears, robots use sensors to perceive the world.</p>
+
+            <div class="component-grid">
+                <!-- IR Sensor -->
+                <div class="card">
+                    <h4>IR Sensor (The Eye)</h4>
+                    <p><strong>Use:</strong> Line following, proximity detection.</p>
+                    <p><strong>Working:</strong> Emits Infrared light; if it bounces back, an object is near.</p>
+                    <hr>
+                    <p><strong>Wiring:</strong> VCC(5V), GND, OUT(Pin 2)</p>
+                </div>
+
+                <!-- Ultrasonic Sensor -->
+                <div class="card">
+                    <h4>Ultrasonic Sensor (HC-SR04)</h4>
+                    <p><strong>Use:</strong> Measuring distance, avoiding obstacles.</p>
+                    <p><strong>Working:</strong> Sends sound waves like a bat.</p>
+                    <hr>
+                    <p><strong>Wiring:</strong> Trig(Pin 9), Echo(Pin 10)</p>
+                </div>
+
+                <!-- PIR Sensor -->
+                <div class="card">
+                    <h4>PIR Sensor</h4>
+                    <p><strong>Use:</strong> Motion detection (Burglar alarms).</p>
+                    <p><strong>Working:</strong> Detects heat (infrared) given off by living bodies.</p>
+                </div>
+
+                <!-- Soil Moisture -->
+                <div class="card">
+                    <h4>Soil Moisture Sensor</h4>
+                    <p><strong>Use:</strong> Smart Gardening.</p>
+                    <p><strong>Working:</strong> Measures resistance between two probes in soil.</p>
+                </div>
+            </div>
+
+            <h3>Practical Activity: Obstacle Warning</h3>
+            <p>Connect an Ultrasonic Sensor. If distance < 10cm, Turn on LED/Buzzer.</p>
+                    <pre>
+// Pseudo-code logic
+if (distance < 10) {
+    digitalWrite(ledPin, HIGH);
+    tone(buzzer, 1000);
+} else {
+    digitalWrite(ledPin, LOW);
+    noTone(buzzer);
+}
+            </pre>
+        </section>
+
+        <!-- SECTION 7: MOTORS & ROBOTICS -->
+        <section id="motors">
+            <h2>7. Motors & Robotics</h2>
+            <p>To move, our robot needs muscles. We use <strong>DC Motors</strong> for wheels and <strong>Servo
+                    Motors</strong> for precise angles (like robot arms).</p>
+
+            <h3>Interactive Learning: Virtual Servo Arm</h3>
+            <div class="interactive-box"
+                style="padding: 30px; border: 1px solid var(--primary-color); border-radius: 8px; margin-bottom: 20px; text-align: center;">
+                <h4 style="margin-top:0; color: var(--primary-color);">🦾 Servo Angle Control</h4>
+                <p>Move the slider to rotate the robot arm (0° to 180°)</p>
+
+                <!-- Arm Visual -->
+                <div class="servo-container"
+                    style="position: relative; height: 200px; width: 100%; display: flex; justify-content: center; align-items: flex-end; overflow: hidden;">
+                    <div class="servo-base"
+                        style="width: 100px; height: 20px; background: #333; border-radius: 10px 10px 0 0; z-index: 2;">
+                    </div>
+                    <div id="robot-arm"
+                        style="position: absolute; bottom: 10px; width: 20px; height: 150px; background: var(--secondary-color); transform-origin: bottom center; transition: transform 0.1s linear; border-radius: 5px; box-shadow: 0 0 15px var(--secondary-color); z-index: 1;">
+                        <div
+                            style="position: absolute; top: 0; left: -15px; width: 50px; height: 20px; background: var(--primary-color); border-radius: 5px;">
+                        </div> <!-- Claw -->
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="slider-container" style="margin-top: 20px;">
+                    <input type="range" id="servo-slider" min="0" max="180" value="90" oninput="updateServo(this.value)"
+                        style="width: 80%;">
+                    <p>Current Angle: <span id="servo-value"
+                            style="color: var(--primary-color); font-weight: bold; font-family: var(--font-head); font-size: 1.2rem;">90°</span>
+                    </p>
+                    <code id="servo-code" style="display: block; margin-top: 10px;">myservo.write(90);</code>
+                </div>
+            </div>
+
+            <h3>L298N Motor Driver</h3>
+            <p>Microcontrollers (Arduino) cannot power motors directly—they are too weak! We use the L298N driver as a
+                middleman.</p>
+
+            <div class="visual-placeholder" style="background: none; border: none; height: auto;">
+                <img src="https://components101.com/sites/default/files/component_pin/L298N-Module-Pinout.jpg"
+                    alt="L298N Motor Driver Pinout" style="max-width: 100%; border-radius: 8px;">
+            </div>
+
+            <h3>Wiring Logic (H-Bridge)</h3>
+            <p>The L298N has an "H-Bridge" inside, which allows it to swap the polarity of the motors, letting them spin
+                <strong>Forward</strong> AND <strong>Backward</strong>.
+            </p>
+
+            <h3>Movement Code</h3>
+            <pre>
+// Motor A connections
+int enA = 9;
+int in1 = 8;
+int in2 = 7;
+
+void setup() {
+  pinMode(enA, OUTPUT);
+  pinMode(in1, OUTPUT);
+  pinMode(in2, OUTPUT);
+}
+
+void loop() {
+  // Move Forward
+  digitalWrite(in1, HIGH);
+  digitalWrite(in2, LOW);
+  analogWrite(enA, 200); // Speed 0-255
+  delay(2000);
+  
+  // Stop
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, LOW);
+  delay(1000);
+}
+            </pre>
+        </section>
+
+        <!-- SECTION 8: POWER SYSTEM -->
+        <section id="power">
+            <h2>8. Power System</h2>
+            <p>A robot without power is just a statue. We need a safe and reliable energy source.</p>
+
+            <h3>18650 Li-Ion Batteries</h3>
+            <p>These are powerful rechargeable batteries used in modern robotics (and electric cars!).</p>
+            <ul>
+                <li><strong>Voltage:</strong> 3.7V per cell.</li>
+                <li><strong>Pack:</strong> 2 cells in series = 7.4V (Perfect for Arduino & Motors).</li>
+            </ul>
+
+            <div class="card" style="border-left: 5px solid var(--danger);">
+                <h4>⚠️ SAFETY WARNING</h4>
+                <p>Never short-circuit batteries. They can get hot and catch fire! Always use a battery holder and turn
+                    off the switch when not in use.</p>
+            </div>
+        </section>
+
+        <!-- SECTION 9: INTEGRATED PROJECTS -->
+        <section id="projects">
+            <h2>9. Integrated Projects</h2>
+            <p>It's time to put everything together! Choose your challenge.</p>
+
+            <div class="component-grid">
+                <!-- Project 1 -->
+                <div class="card">
+                    <h3>🤖 Obstacle Avoiding Robot</h3>
+                    <p><strong>Components:</strong> Ultrasonic Sensor + Servo + Motor Driver.</p>
+                    <p><strong>Logic:</strong> Drive forward -> Detect wall -> Stop -> Look Left/Right -> Turn to open
+                        space.</p>
+                    <a href="#" class="btn">View Wiring</a>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="card">
+                    <h3>🌱 Smart Irrigation System</h3>
+                    <p><strong>Components:</strong> Soil Moisture Sensor + Relay + Water Pump.</p>
+                    <p><strong>Logic:</strong> If Soil Moisture < 30% -> Turn ON Pump -> Wait 5s -> Turn OFF.</p>
+                    <a href="#" class="btn">View Wiring</a>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="card">
+                    <h3>🔐 Password Security Lock</h3>
+                    <p><strong>Components:</strong> Keypad + LCD + Servo (Lock).</p>
+                    <p><strong>Logic:</strong> Type "1234" -> Servo Rotates 90° (Unlock) -> Wait 5s -> Lock.</p>
+                    <a href="#" class="btn">View Wiring</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 10: CODING BASICS -->
+        <section id="coding">
+            <h2>10. Coding Basics: Talking to Robots</h2>
+            <p>Coding is how we give instructions to the robot. The Arduino language (C++) uses specific rules (syntax).
+            </p>
+
+            <!-- 1. VARIABLES -->
+            <h3>1. Variables (The Containers)</h3>
+            <p><strong>Definition:</strong> A variable is like a labelled box where we store data. We must give it a
+                name and a type.</p>
+            <pre>int ledPin = 13;</pre>
+            <p>Here, <code>int</code> is the type (whole number), <code>ledPin</code> is the name, and <code>13</code>
+                is the value.</p>
+
+            <div class="interactive-box" style="margin-bottom: 30px;">
+                <h4>Activity 1: Complete the Variable Declaration</h4>
+                <p>Drag the parts to create: <code>int speed = 100;</code></p>
+                <div class="code-scramble-container">
+                    <ul class="scramble-list" style="list-style: none; padding: 0;">
+                        <li data-index="0" draggable="true" class="draggable-item">int</li>
+                        <li data-index="1" draggable="true" class="draggable-item">speed</li>
+                        <li data-index="2" draggable="true" class="draggable-item">=</li>
+                        <li data-index="3" draggable="true" class="draggable-item">100;</li>
+                    </ul>
+                    <div class="scramble-feedback"></div>
+                    <button class="btn" onclick="checkScramble(this)">Check Code</button>
+                </div>
+            </div>
+
+            <div class="interactive-box" style="margin-bottom: 30px;">
+                <h4>Activity 2: Variable Swap Logic</h4>
+                <p>Arrange logically to declare a pin and then use it.</p>
+                <div class="code-scramble-container">
+                    <ul class="scramble-list" style="list-style: none; padding: 0;">
+                        <li data-index="0" draggable="true" class="draggable-item">int buzzerPin = 8;</li>
+                        <li data-index="1" draggable="true" class="draggable-item">pinMode(buzzerPin, OUTPUT);</li>
+                        <li data-index="2" draggable="true" class="draggable-item">digitalWrite(buzzerPin, HIGH);</li>
+                    </ul>
+                    <div class="scramble-feedback"></div>
+                    <button class="btn" onclick="checkScramble(this)">Check Code</button>
+                </div>
+            </div>
+
+            <!-- 2. DATA TYPES -->
+            <h3>2. Data Types (The Content)</h3>
+            <p><strong>Definition:</strong> Different boxes hold different things.
+                <br>• <code>int</code>: Whole numbers (1, 50, -10)
+                <br>• <code>float</code>: Decimals (3.14, 2.5)
+                <br>• <code>char</code>: Single character ('A', 'z')
+                <br>• <code>String</code>: Text ("Hello World")
+                <br>• <code>bool</code>: True or False (1 or 0)
+            </p>
+
+            <div class="interactive-box" style="margin-bottom: 30px;">
+                <h4>Activity 1: Match Value to Type</h4>
+                <p>Order these declarations correctly.</p>
+                <div class="code-scramble-container">
+                    <ul class="scramble-list" style="list-style: none; padding: 0;">
+                        <li data-index="0" draggable="true" class="draggable-item">int count = 10;</li>
+                        <li data-index="1" draggable="true" class="draggable-item">float pi = 3.14;</li>
+                        <li data-index="2" draggable="true" class="draggable-item">String name = "Robo";</li>
+                        <li data-index="3" draggable="true" class="draggable-item">bool isReady = true;</li>
+                    </ul>
+                    <div class="scramble-feedback"></div>
+                    <button class="btn" onclick="checkScramble(this)">Check Code</button>
+                </div>
+            </div>
+
+            <div class="interactive-box" style="margin-bottom: 30px;">
+                <h4>Activity 2: Fix the Syntax</h4>
+                <p>Put the keywords in order to define a String: <code>String msg = "Hi";</code></p>
+                <div class="code-scramble-container">
+                    <ul class="scramble-list" style="list-style: none; padding: 0;">
+                        <li data-index="0" draggable="true" class="draggable-item">String</li>
+                        <li data-index="1" draggable="true" class="draggable-item">msg</li>
+                        <li data-index="2" draggable="true" class="draggable-item">=</li>
+                        <li data-index="3" draggable="true" class="draggable-item">"Hi";</li>
+                    </ul>
+                    <div class="scramble-feedback"></div>
+                    <button class="btn" onclick="checkScramble(this)">Check Code</button>
+                </div>
+            </div>
+
+            <!-- 3. CONDITIONALS -->
+            <h3>3. Conditionals (Making Decisions)</h3>
+            <p><strong>Definition:</strong> Robots use <code>if/else</code> statements to make choices based on sensors.
+            </p>
+            <pre>
+if (distance < 10) {
+  stop(); 
+} else {
+  move();
+}</pre>
+
+            <div class="interactive-box" style="margin-bottom: 30px;">
+                <h4>Activity 1: Obstacle Avoider Logic</h4>
+                <p>Arrange the logic: If distance is small, Stop. Else, Move Forward.</p>
+                <div class="code-scramble-container">
+                    <ul class="scramble-list" style="list-style: none; padding: 0;">
+                        <li data-index="0" draggable="true" class="draggable-item">if (distance < 20) {</li>
+                        <li data-index="1" draggable="true" class="draggable-item"> stopRobot();</li>
+                        <li data-index="2" draggable="true" class="draggable-item">} else {</li>
+                        <li data-index="3" draggable="true" class="draggable-item"> moveForward();</li>
+                        <li data-index="4" draggable="true" class="draggable-item">}</li>
+                    </ul>
+                    <div class="scramble-feedback"></div>
+                    <button class="btn" onclick="checkScramble(this)">Check Code</button>
+                </div>
+            </div>
+
+            <div class="interactive-box" style="margin-bottom: 30px;">
+                <h4>Activity 2: Line Follower Logic</h4>
+                <p>If Black Line (Sensor HIGH) -> Turn Right.</p>
+                <div class="code-scramble-container">
+                    <ul class="scramble-list" style="list-style: none; padding: 0;">
+                        <li data-index="0" draggable="true" class="draggable-item">if (sensorValue == HIGH) {</li>
+                        <li data-index="1" draggable="true" class="draggable-item"> turnRight();</li>
+                        <li data-index="2" draggable="true" class="draggable-item">}</li>
+                    </ul>
+                    <div class="scramble-feedback"></div>
+                    <button class="btn" onclick="checkScramble(this)">Check Code</button>
+                </div>
+            </div>
+
+            <!-- 4. LOOPS -->
+            <h3>4. Loops (Repeating Things)</h3>
+            <p><strong>Definition:</strong> Loops let us repeat code multiple times without rewriting it. `void loop()`
+                is the main loop, but we also use <code>for</code> loops.</p>
+
+            <div class="interactive-box" style="margin-bottom: 30px;">
+                <h4>Activity 1: The 'For' Loop</h4>
+                <p>Create a loop that counts from 0 to 9.</p>
+                <div class="code-scramble-container">
+                    <ul class="scramble-list" style="list-style: none; padding: 0;">
+                        <li data-index="0" draggable="true" class="draggable-item">for (int i = 0;</li>
+                        <li data-index="1" draggable="true" class="draggable-item">i < 10;</li>
+                        <li data-index="2" draggable="true" class="draggable-item">i++) {</li>
+                        <li data-index="3" draggable="true" class="draggable-item"> // Repeat this code</li>
+                        <li data-index="4" draggable="true" class="draggable-item">}</li>
+                    </ul>
+                    <div class="scramble-feedback"></div>
+                    <button class="btn" onclick="checkScramble(this)">Check Code</button>
+                </div>
+            </div>
+
+            <div class="interactive-box" style="margin-bottom: 30px;">
+                <h4>Activity 2: Blick 3 Times</h4>
+                <p>Arrange the loop to blink an LED.</p>
+                <div class="code-scramble-container">
+                    <ul class="scramble-list" style="list-style: none; padding: 0;">
+                        <li data-index="0" draggable="true" class="draggable-item">for (int k=0; k<3; k++) {</li>
+                        <li data-index="1" draggable="true" class="draggable-item"> digitalWrite(led, HIGH);</li>
+                        <li data-index="2" draggable="true" class="draggable-item"> delay(500);</li>
+                        <li data-index="3" draggable="true" class="draggable-item"> digitalWrite(led, LOW);</li>
+                        <li data-index="4" draggable="true" class="draggable-item">}</li>
+                    </ul>
+                    <div class="scramble-feedback"></div>
+                    <button class="btn" onclick="checkScramble(this)">Check Code</button>
+                </div>
+            </div>
+
+            <!-- 5. FUNCTIONS -->
+            <h3>5. Functions (Action Blocks)</h3>
+            <p><strong>Definition:</strong> Functions are mini-programs. We define them once and call them whenever we
+                need them.</p>
+
+            <div class="interactive-box" style="margin-bottom: 30px;">
+                <h4>Activity 1: Create a Function</h4>
+                <p>Define a function called `buzz()`.</p>
+                <div class="code-scramble-container">
+                    <ul class="scramble-list" style="list-style: none; padding: 0;">
+                        <li data-index="0" draggable="true" class="draggable-item">void buzz() {</li>
+                        <li data-index="1" draggable="true" class="draggable-item"> digitalWrite(buzzer, HIGH);</li>
+                        <li data-index="2" draggable="true" class="draggable-item"> delay(100);</li>
+                        <li data-index="3" draggable="true" class="draggable-item"> digitalWrite(buzzer, LOW);</li>
+                        <li data-index="4" draggable="true" class="draggable-item">}</li>
+                    </ul>
+                    <div class="scramble-feedback"></div>
+                    <button class="btn" onclick="checkScramble(this)">Check Code</button>
+                </div>
+            </div>
+
+            <div class="interactive-box" style="margin-bottom: 30px;">
+                <h4>Activity 2: Setup, Loop, & Call</h4>
+                <p>The standard structure of an Arduino program.</p>
+                <div class="code-scramble-container">
+                    <ul class="scramble-list" style="list-style: none; padding: 0;">
+                        <li data-index="0" draggable="true" class="draggable-item">void setup() { }</li>
+                        <li data-index="1" draggable="true" class="draggable-item">void loop() {</li>
+                        <li data-index="2" draggable="true" class="draggable-item"> myFunction();</li>
+                        <li data-index="3" draggable="true" class="draggable-item">}</li>
+                        <li data-index="4" draggable="true" class="draggable-item">void myFunction() { }</li>
+                    </ul>
+                    <div class="scramble-feedback"></div>
+                    <button class="btn" onclick="checkScramble(this)">Check Code</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 11: 3D PRINTING BASICS -->
+        <section id="3dprinting">
+            <h2>11. 3D Printing in Robotics</h2>
+            <p>3D Printing allows us to make custom chassis, mounts, and gears!</p>
+            <ul>
+                <li><strong>Material:</strong> PLA (Polylactic Acid) - Biodegradable and easy to print.</li>
+                <li><strong>Slicing:</strong> Slicing software (like Cura) cuts your 3D model into layers for the
+                    printer.</li>
+                <li><strong>Design:</strong> Use TinkerCAD (Beginner) or Fusion 360 (Advanced) to design parts.</li>
+            </ul>
+        </section>
+
+        <!-- SECTION 12: TROUBLESHOOTING -->
+        <section id="troubleshooting">
+            <h2>12. Troubleshooting Guide</h2>
+            <p>Robot not working? Don't panic! Check these common issues.</p>
+
+            <table>
+                <tr>
+                    <th>Symptom</th>
+                    <th>Possible Cause</th>
+                    <th>Solution</th>
+                </tr>
+                <tr>
+                    <td>Code won't upload</td>
+                    <td>Wrong COM Port</td>
+                    <td>Check Tools > Port in Arduino IDE.</td>
+                </tr>
+                <tr>
+                    <td>LCD Screen is blank</td>
+                    <td>Contrast Potentiometer</td>
+                    <td>Turn the blue knob on the I2C module back/forth.</td>
+                </tr>
+                <tr>
+                    <td>Motors only hum but don't move</td>
+                    <td>Low Battery</td>
+                    <td>Charge batteries. USB power is not enough for motors.</td>
+                </tr>
+                <tr>
+                    <td>Sensor gives random values</td>
+                    <td>Loose wiring</td>
+                    <td>Double-check jumper wires on the breadboard.</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- SECTION 13: INNOVATION CHALLENGE -->
+        <section id="innovation">
+            <h2>13. Innovation Challenge 🚀</h2>
+            <p>Now that you know the basics, can you build something new? Pick a challenge!</p>
+
+            <div class="component-grid">
+                <div class="card">
+                    <h4>1. Smart Trash Can</h4>
+                    <p>Opens automatically when you bring trash near it.</p>
+                </div>
+                <div class="card">
+                    <h4>2. Radar System</h4>
+                    <p>Display objects on a PC screen using sonar.</p>
+                </div>
+                <div class="card">
+                    <h4>3. Gesture Robot</h4>
+                    <p>Control a robot by tilting your hand (accelerometer).</p>
+                </div>
+                <div class="card">
+                    <h4>4. Home Automation</h4>
+                    <p>Turn lights on/off using a remote or voice.</p>
+                </div>
+            </div>
+
+            <h3>Evaluation Rubric</h3>
+            <ul>
+                <li><strong>Creativity:</strong> Is the idea unique?</li>
+                <li><strong>Functionality:</strong> Does it work consistently?</li>
+                <li><strong>Code Quality:</strong> Is the code neat and commented?</li>
+                <li><strong>Design:</strong> Is the wiring neat and chassis sturdy?</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 ROBOAI HUB. All Rights Reserved. | <span style="color: var(--secondary-color);">Inspiring the
+                    Next Generation</span></p>
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
